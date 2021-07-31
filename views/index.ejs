@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resumo dos seus custos em nuvem</title>
+    <title>Hackathon Cloud</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body{
+            background-color: #2d333b;
+            color: azure;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        td{
+            border: 1px solid #2d333b;
+        }
+        .dado{
+            background-color: #1d2127;
+        }
+    </style>
 </head>
-<body style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<body>
+    
     <h3>
         Resumo dos custos dos seus serviços de nuvem
     </h3>
@@ -18,7 +35,7 @@
     
 
     <table border="1" style='width: 80%'>
-        <tr style="text-align: center;">
+        <tr style="text-align: center; background-color: #2d9234;">
             <td>
                 <b>Serviço:</b> 
             </td>
@@ -31,6 +48,15 @@
             <td>
                 <b>Ocorrências:</b> 
             </td>
+            <td>
+                <b>Quantidade</b>
+            </td>
+            <td>
+                <b>Preço unitário</b>
+            </td>
+            <td>
+                <b>Unidade</b>
+            </td>
         </tr>
         
         <% var tudo = 0.0;%>
@@ -38,12 +64,13 @@
             <% var total = 0.0; %>
             <% variavel[i].forEach(elemento=>{%>
                 <%  var numero = parseFloat(elemento['lineItem/UnblendedCost']).toFixed(10); %>
-                <% total += Number(numero); %>
+                <% total += Number(numero || 0.0); %>
+                
                 
         <%}) %>
         
-        <tr>
-            <td><%= " "+ variavel[i][0]['product/ProductName'] %></td>
+        <tr class="dado">
+            <td><%= variavel[i][0]['product/ProductName'] %></td>
             <td>
                 <%= total.toFixed(10) %> 
             </td>
@@ -51,6 +78,13 @@
                 <%= variavel[0][0]['lineItem/CurrencyCode'] %> 
             </td>
             <td><%= variavel[i].length %></td>
+            <td><%= usage[i] %> </td>
+            <td>
+                <%= parseFloat(variavel[i][0]['lineItem/UnblendedRate']).toFixed(10)  %> 
+            </td>
+            <td><%= variavel[i][0]['pricing/unit'] %> </td>
+            
+            
             
         </tr>  
         <script>
@@ -59,14 +93,14 @@
         </script>
         <% tudo+=total %>
     <%} %>
-    <tr><td> <b>Total:</b> </td> <td colspan="3"><b><%= tudo+" "+variavel[0][0]['lineItem/CurrencyCode'] %></b></td></tr>
+    <tr style="background-color: #2d9234;"><td> <b>Total:</b> </td> <td colspan="6"><b>$<%= tudo+" "+variavel[0][0]['lineItem/CurrencyCode'] %></b></td></tr>
     
     </table>
     
         
     
 
-    <h2 id="titulo" style="width: 300px;">
+    <h2 id="titulo">
         Gráfico
     </h2>
 

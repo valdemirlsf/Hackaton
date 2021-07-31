@@ -9,13 +9,14 @@ const opcoes =  {
     responsive: true,
     plugins: {
         legend: {
-            position: 'bottom',
+            position: 'bottom'
         },
         title: {
             display: true,
-            text: `Valor Gasto com cada serviço de Cloud (Total de $ ${valorTotal} dólares)`
+            text: `Valor Gasto com cada serviço de Cloud (Total de $ ${valorTotal} dólares)`,
+            color: 'azure'
         },
-        padding: 50
+        padding: 5
     }
 }
 
@@ -54,7 +55,8 @@ const opcoes2 =  {
         },
         title: {
             display: true,
-            text: 'Ocorrências de uso dos serviços'
+            text: 'Quantidade de registros de cobrança de cada serviço',
+            color: 'azure'
         }
     }
 }

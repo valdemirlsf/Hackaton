@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body{
+            background-color: #2d333b;
+            color: azure;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type=submit]{
+            text-decoration: none;
+            color: azure;
+            font-weight: bold;
+            background-color: #2d9234;
+            border: 1px solid #16561a;
+            padding: 1%;
+            border-radius: 10px;
+        }
+        #mensagem{
+            display: none;
+        }
+    </style>
+    
+</head>
+<body>
+    <nav style="background-color: #16561a; ">
+        
+        <a href="./" class="brand-logo" style="margin-left: 1%;">Hackathon Cloud</a>
+      
+    </nav>
+    <div style="width: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        
+      <h4 style="text-align: center;">Selecione o método de consulta e depois clique no botão abaixo para consultar os dados</h4>
+      
+      
+      <h6 id="mensagem">Isso pode demorar um pouco devido à quantidade de dados</h6>
+      <form action="./parametro:" method="get" >
+          <div>
+              <div style="padding: 2%;">
+                  <label>
+                    <input name="opcao" value="CSV" type="radio" checked/>
+                    <span>CSV</span>
+                  </label>
+              </div>
+              <div style="padding: 2%;">
+                  <label>
+                    <input name="opcao" value="MongoDB" type="radio"  />
+                    <span>MongoDB</span>
+                  </label>
+              </div>
+          </div>
+          <input type="submit" value="Consultar" style="padding: 6%; margin: 1%;" onclick="Mensagem()">
+      </form>
+    </div>
+    
+    
+    <script>
+        function Mensagem(){
+            document.getElementById("mensagem").style.display = 'block';
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+</body>
+</html>
